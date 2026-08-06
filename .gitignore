@@ -1,6 +1,48 @@
-node_modules/
-.env
-__pycache__/
-dist/
-build/
+
+!.env.example
+!lifeos/storage/.gitkeep
+!reports/.gitkeep
+!reports/history/.gitkeep
+# Auto-generated system reports (runtime)
+# Backups
+# Hero video source (heavy original; web build is hero-wb-fbs.mp4 ~5MB)
+# IDE
+# LifeOS runtime storage (CRM records, observability logs)
+# Local Python
+# Local runtime / logs
+# Secrets / runtime config
+# macOS
+# Секреты заявки (продакшен на Beget)
+**/.DS_Store
+*.dump
+*.key
+*.pem
+*.sql
 .DS_Store
+.cache/
+.env
+.env.*
+.idea/
+.lead-amocrm-token.json
+.venv/
+.vscode/
+__pycache__/
+assets/video/hero-wb-fbs-source.mp4
+backups/
+build/
+dist/
+landing/assets/video/hero-wb-fbs-source.mp4
+lead-config.php
+lifeos/config.php
+lifeos/storage/*
+logs/
+reports/history/*.json
+reports/system-report.json
+tmp/
+venv/
+
+# market-v1.1 lead intake + admin panel (added cloud/market-v1.1)
+config/market-v1_1.php
+storage/leads/*
+!storage/leads/.gitkeep
+!storage/leads/.htaccess

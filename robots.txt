@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /lifeos/
+Allow: /landing/
+Allow: /offer.html
+Allow: /privacy-policy.html
+Allow: /personal-data-consent.html
+Allow: /marketing-consent.html
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /config/
+Disallow: /lib/
+Disallow: /reports/
+Disallow: /lifeos/storage/
+Disallow: /lifeos/dashboard-pro/
+Disallow: /lifeos/growth/dashboard/
+
+Sitemap: https://market.teravox.ru/sitemap.xml

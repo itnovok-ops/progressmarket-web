@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Система WB FBS — запуск продаж на Wildberries без закупки склада</title>
+  <meta name="description" content="Запуск продаж на Wildberries по модели FBS без закупки партии на склад: подключение ассортимента поставщиков, подготовка карточек и сопровождение процесса. Получите расчёт под ваш магазин на market.teravox.ru.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0b0f17">
+  <link rel="canonical" href="https://market.teravox.ru/lifeos/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Система WB FBS">
+  <meta property="og:url" content="https://market.teravox.ru/lifeos/">
+  <meta property="og:title" content="Система WB FBS — запуск продаж на Wildberries без закупки склада">
+  <meta property="og:description" content="Подключаем ассортимент оптовых поставщиков, готовим карточки и поддерживаем FBS-процесс. Вы приобретаете товар после получения заказа.">
+  <meta property="og:image" content="https://market.teravox.ru/landing/assets/images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png">
+  <meta property="og:image:alt" content="Система ассортимента WB FBS — панель автоматизации Wildberries">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="592">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Система WB FBS — запуск продаж на Wildberries без закупки склада">
+  <meta name="twitter:description" content="FBS без закупки склада: ассортимент поставщиков, карточки и сопровождение процесса. Расчёт под ваш магазин.">
+  <meta name="twitter:image" content="https://market.teravox.ru/landing/assets/images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Система WB FBS",
+    "url": "https://market.teravox.ru/lifeos/",
+    "logo": "https://market.teravox.ru/landing/assets/images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png",
+    "email": "support@progress-market.ru"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Система WB FBS",
+    "url": "https://market.teravox.ru/lifeos/",
+    "description": "Лендинг сервиса запуска продаж на Wildberries по модели FBS без закупки партии на склад."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Нужно ли закупать товар?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет. Система WB FBS использует модель поставщика — управление остатками WB без закупки партии. Капитал остаётся ликвидным для селлеров Wildberries в России."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Это дропшиппинг или FBS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Это платформа автоматизации Wildberries FBS: оптимизация логистики маркетплейса, автоматизация остатков, репрайсер — не классическое копирование чужих схем дропшиппинга."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Подходит ли для селлеров в России?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Создано для селлеров Wildberries в России и предпринимателей в электронной коммерции — автоматизация инструментов WB с учётом локальных правил FBS."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какие риски остаются?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Риск смещается с закупки партии на управление системой — вы тестируете спрос по каталогу через автоматизацию Wildberries FBS, а не ставку на один SKU."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    html, body {
+      margin: 0;
+      background: #0b0f14;
+      color: #f4f7fc;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      min-height: 100%;
+    }
+    #app {
+      min-height: 100vh;
+      visibility: visible;
+    }
+    #boot-shell {
+      padding: 24px 20px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    #boot-shell h1 {
+      font-size: clamp(1.35rem, 5vw, 1.75rem);
+      line-height: 1.25;
+      margin: 12px 0;
+    }
+    #boot-shell p {
+      margin: 0;
+      line-height: 1.5;
+      color: rgba(244, 247, 252, 0.75);
+    }
+    #boot-shell .boot-kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4f8cff;
+      font-weight: 700;
+    }
+    #boot-shell .boot-status {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+    /* ULS header critical — desktop horizontal nav */
+    @media (min-width: 769px) {
+      .site-header__mobile-tools { display: none !important; }
+      .site-header__menu-shell { display: block !important; position: static !important; flex: 1; }
+      .site-header__menu-row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+      }
+      .site-header__nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        width: auto !important;
+      }
+      .site-header__shell-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        width: auto !important;
+        flex-shrink: 0;
+      }
+      .site-header__shell-cta { width: auto !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="/landing/styles/ui-kit.css?v=2026.08.07.01">
+  <link rel="stylesheet" href="/landing/styles/styles.css?v=2026.08.07.01">
+</head>
+<body>
+
+<div id="app">
+  <div id="boot-shell">
+    <p class="boot-kicker">Автоматическая система · без склада</p>
+    <h1>Система WB FBS — продажи на Wildberries без склада</h1>
+    <p>Автоматизация FBS, управление остатками и масштабирование ассортимента.</p>
+    <p class="boot-status">Загрузка страницы…</p>
+  </div>
+</div>
+
+<noscript>
+  <div style="color:#f4f7fc;padding:40px;background:#0b0f14;min-height:100vh;font-family:system-ui,sans-serif">
+    Включите JavaScript для полной версии сайта.
+  </div>
+</noscript>
+
+<script>
+  window.__ENTRY_SAFE_MODE__ = true;
+  window.addEventListener("unhandledrejection", function (e) {
+    if (window.__RENDER_FROZEN__) return;
+    console.warn("[BOOT]", e.reason);
+  });
+</script>
+<script type="module" src="/lifeos/app.js?v=2026.08.07.01"></script>
+</body>
+</html>
