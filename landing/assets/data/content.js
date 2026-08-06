@@ -75,7 +75,11 @@ export const IMAGE_META = {
   "cases/dashboard.png": { width: 960, height: 540 }
 };
 
-export const LEADS_ENDPOINT = "/api/v1/leads";
+// V1.1: points at the new self-contained canonical endpoint (api/v1/lead-intake.php).
+// NOT /api/v1/leads — that path depends on the top-level lifeos/ ops-core stack, which
+// is out of scope for this agent (see docs/LEAD_REFERRAL_V1.md for why). Roman must
+// explicitly confirm this before the branch is deployed — see implementation report §26.
+export const LEADS_ENDPOINT = "/api/v1/lead-intake.php";
 
 export const PAGE_CONTENT = {
   seo: {
@@ -123,7 +127,7 @@ export const PAGE_CONTENT = {
   nav: [
     { label: "Проблема", href: "#problem", scope: "desktop" },
     { label: "Инсайт", href: "#insight" },
-    { label: "Система", href: "#video" },
+    { label: "Как это работает", href: "#system" },
     { label: "Результаты", href: "#cases" },
     { label: "Вопросы", href: "#faq" }
   ],
@@ -145,11 +149,10 @@ export const PAGE_CONTENT = {
   },
 
   hero: {
-    label: "АВТОМАТИЧЕСКАЯ СИСТЕМА · БЕЗ СКЛАДА",
-    headline:
-      "Автоматическая система, которая запускает продажи на Wildberries без склада и ручной работы",
+    label: "WILDBERRIES · FBS · БЕЗ ЗАКУПКИ СКЛАДА",
+    headline: "Запустите продажи на Wildberries без закупки товара на склад",
     subtitle:
-      "Подключение к поставщикам → создание карточек → управление остатками → прибыль под контролем системы. Без сотрудников, без ручного управления — под ключ.",
+      "Подключаем ассортимент оптовых поставщиков, готовим карточки и поддерживаем FBS-процесс. Вы приобретаете товар после получения заказа.",
     image: "images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png",
     imageAlt: "Автоматическая система WB FBS — продажи под контролем алгоритма",
     videoKicker:
@@ -163,15 +166,15 @@ export const PAGE_CONTENT = {
     ],
     cta: {
       primary: {
-        label: "Оставить заявку",
+        label: "Получить доступ к ассортименту",
         href: "#cta",
         ymGoal: "order",
         trackId: "click_cta_primary",
         variant: "primary"
       },
       secondary: {
-        label: "Смотреть видео",
-        href: "#video",
+        label: "Как это работает",
+        href: "#system",
         trackId: "click_cta_secondary",
         variant: "ghost"
       }
@@ -306,41 +309,59 @@ export const PAGE_CONTENT = {
   system: {
     id: "system",
     sectionClass: "section section--system",
-    eyebrow: "Как устроена система",
-    title: "Система WB FBS: пошаговая оптимизация логистики маркетплейса",
+    eyebrow: "Как это работает",
+    title: "От подключения кабинета до заказа на Wildberries — семь шагов",
     lead:
-      "Автоматизация Wildberries FBS для селлеров в России: поставщик → каталог → заказ → фулфилмент → управление остатками WB. Полный конвейер системы дропшиппинга для бизнеса, масштабирующего ассортимент.",
+      "Каждый шаг конвейера снимает с вас одну операционную задачу: не нужно закупать склад заранее и вручную собирать процессы.",
     steps: [
       {
         step: 1,
-        title: "Модель поставщика",
-        text: "Поставщик держит остатки; вы продаёте через кабинет WB — система WB FBS без закупки партии и заморозки склада.",
-        image:
-          "diagrams/14_system_supplier_fulfillment_flow-36328da2-76f3-4499-9fb2-8e970d97fa3e.png",
-        alt: "Оптимизация логистики FBS: поставщик → система → Wildberries → фулфилмент"
+        title: "Подключаем кабинет",
+        text: "Начинаем работу с вашим кабинетом Wildberries — без передачи прав собственности, только доступ, необходимый для размещения ассортимента.",
+        image: "images/03_system/15_system_top_questions_sellers-f73fbb15-3e02-4c48-bcd6-8c230907f0f7.png",
+        alt: "Подключение кабинета Wildberries к системе WB FBS"
       },
       {
         step: 2,
-        title: "Каталог 70 000+ SKU",
-        text: "Ассортимент подключается к площадке — автоматизация Wildberries FBS распределяет продажи по каталогу, а не по одной карточке.",
-        image:
-          "images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png",
-        alt: "Автоматизация Wildberries: ассортиментная система 70 000 SKU"
+        title: "Подключаем ассортимент поставщиков",
+        text: "Получаем товарные данные крупных оптовых поставщиков через интеграции и API — без закупки партии на склад.",
+        image: "images/03_system/13_system_wb_assortment_model-0373a402-c3c8-43b0-ad29-c8538af6d658.png",
+        alt: "Подключение ассортимента оптовых поставщиков к каталогу WB FBS"
       },
       {
         step: 3,
-        title: "Вопросы селлера → готовая инфраструктура",
-        text: "Где брать товар, как отгружать, как масштабировать — автоматизация инструментов WB заменяет ручную сборку процессов.",
-        image:
-          "images/03_system/15_system_top_questions_sellers-f73fbb15-3e02-4c48-bcd6-8c230907f0f7.png",
-        alt: "Инструменты селлера Wildberries: ответы на ключевые вопросы"
+        title: "Готовим карточки",
+        text: "Исходные данные, изображения и описания обрабатываются и оформляются под требования Wildberries.",
+        image: null,
+        alt: null
       },
       {
         step: 4,
-        title: "Поток FBS и репрайсер",
-        text: "Заказ WB → фулфилмент → синхронизация остатков → репрайсер. Система управления остатками WB работает в цикле 24/7.",
-        image: "diagrams/fbs-flow.png",
-        alt: "Оптимизация логистики FBS: заказ, отгрузка, остатки, цены"
+        title: "Размещаем ассортимент на Wildberries",
+        text: "Подготовленные карточки публикуются в вашем кабинете — ассортимент становится виден покупателям.",
+        image: "diagrams/14_system_supplier_fulfillment_flow-36328da2-76f3-4499-9fb2-8e970d97fa3e.png",
+        alt: "Размещение подготовленного ассортимента в кабинете Wildberries"
+      },
+      {
+        step: 5,
+        title: "Покупатель делает заказ",
+        text: "Заказ поступает на Wildberries как обычно — покупатель не видит разницы в процессе покупки.",
+        image: null,
+        alt: null
+      },
+      {
+        step: 6,
+        title: "Покупаем товар у поставщика",
+        text: "Конкретная единица товара приобретается у поставщика только после того, как заказ уже подтверждён.",
+        image: null,
+        alt: null
+      },
+      {
+        step: 7,
+        title: "Комплектуем и передаём в FBS",
+        text: "Товар комплектуется, упаковывается и передаётся в FBS для отправки покупателю.",
+        image: null,
+        alt: null
       }
     ]
   },
@@ -356,8 +377,8 @@ export const PAGE_CONTENT = {
       {
         type: "featured",
         title: "Запуск без склада — выручка с первого месяца",
-        image: "cases/dashboard.png",
-        alt: "Панель автоматической системы: выручка и прибыль под контролем алгоритма",
+        image: null,
+        alt: null,
         metrics: [
           { value: "+1 240 000 ₽", label: "выручки за период подключения системы" },
           { value: "+580 000 ₽", label: "чистой прибыли к 3-му месяцу" }

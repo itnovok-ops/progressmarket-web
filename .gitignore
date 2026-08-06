@@ -40,3 +40,9 @@ reports/history/*.json
 reports/system-report.json
 tmp/
 venv/
+
+# market-v1.1 lead intake + admin panel (added cloud/market-v1.1)
+config/market-v1_1.php
+storage/leads/*
+!storage/leads/.gitkeep
+!storage/leads/.htaccess

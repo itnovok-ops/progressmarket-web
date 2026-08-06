@@ -3,6 +3,7 @@ import { trackFormSubmitSuccess } from "./tracking.js";
 import { assertBootPass } from "../build/productionLock.js";
 import { logUlsEvent, bumpUlsMetric, logUlsError } from "../uls/observability.js";
 import { setFormState } from "../uls/state.js";
+import { getReferralCode, getUtmParams } from "./referral.js";
 
 const MAX_ATTEMPTS = 2;
 
@@ -26,8 +27,13 @@ export function initLeadForm(ctaConfig) {
   }
   form.dataset.leadBound = "true";
 
+  // Anti-spam: form render timestamp, used server-side as a minimum-submit-time check.
+  const renderedAt = Date.now();
+
   let isSubmitting = false;
   let isSubmitted = false;
+
+  setFormState("IDLE");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -38,29 +44,49 @@ export function initLeadForm(ctaConfig) {
 
     if (!form.checkValidity()) {
       form.reportValidity();
+      setFormState("VALIDATION_ERROR");
+      logUlsEvent("form_submit", { ok: false, reason: "validation" });
       return;
     }
 
     const formData = new FormData(form);
     const consent = formData.get("consent") === "on";
     const hpTrap = String(formData.get("hp_trap") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const email = String(formData.get("email") || "").trim();
 
     if (!consent) {
-      setFormState("ERROR");
-      setStatus(statusEl, ctaConfig.errorMessage, "error");
+      setFormState("VALIDATION_ERROR");
+      setStatus(statusEl, "Подтвердите согласие с условиями, чтобы отправить заявку.", "error");
       logUlsEvent("form_submit", { ok: false, reason: "consent" });
       return;
     }
 
+    if (!phone && !email) {
+      setFormState("VALIDATION_ERROR");
+      setStatus(statusEl, "Укажите телефон или электронную почту для связи.", "error");
+      logUlsEvent("form_submit", { ok: false, reason: "no_contact" });
+      return;
+    }
+
+    const utm = getUtmParams();
     const payload = {
       name: String(formData.get("name") || "").trim(),
-      phone: String(formData.get("phone") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
+      phone: phone,
+      email: email,
       comment: String(formData.get("comment") || "").trim(),
       project_type: "dropshipping",
       source: "landing",
       hp_trap: hpTrap,
-      marketingConsent: formData.get("marketingConsent") === "on"
+      marketingConsent: formData.get("marketingConsent") === "on",
+      referral_code: getReferralCode(),
+      utm_source: utm.utm_source || "",
+      utm_medium: utm.utm_medium || "",
+      utm_campaign: utm.utm_campaign || "",
+      utm_content: utm.utm_content || "",
+      utm_term: utm.utm_term || "",
+      landing_url: window.location.href,
+      client_render_ts: renderedAt
     };
 
     const enhanced =
@@ -69,7 +95,7 @@ export function initLeadForm(ctaConfig) {
         : payload;
 
     isSubmitting = true;
-    setFormState("IDLE");
+    setFormState("PENDING");
     setLoading(submitBtn, ctaConfig, true);
     setStatus(statusEl, "", "");
     logUlsEvent("form_submit", { stage: "start" });
@@ -78,13 +104,15 @@ export function initLeadForm(ctaConfig) {
       .then(function (result) {
         if (result.ok) {
           isSubmitted = true;
-          setFormState("SENT");
+          setFormState("SUCCESS");
           bumpUlsMetric("formSubmits");
           logUlsEvent("form_submit", { ok: true });
           trackFormSubmitSuccess();
           form.hidden = true;
           if (successPanel) {
             successPanel.hidden = false;
+            successPanel.setAttribute("tabindex", "-1");
+            successPanel.focus();
           }
           setStatus(statusEl, ctaConfig.successMessage, "success");
           return;
@@ -92,7 +120,7 @@ export function initLeadForm(ctaConfig) {
         throw new Error(result.message || "submit_failed");
       })
       .catch(function (err) {
-        setFormState("ERROR");
+        setFormState("SERVER_ERROR");
         const message =
           err && err.message && err.message !== "submit_failed"
             ? err.message

@@ -18,12 +18,14 @@ export function renderSystemFlowSection(data) {
         '<p class="u-body">' +
         escapeHtml(step.text) +
         "</p>" +
-        renderImage({
-          src: step.image,
-          alt: step.alt,
-          frameClass: "img-frame process-step__diagram",
-          autoAspect: true
-        }) +
+        (step.image
+          ? renderImage({
+              src: step.image,
+              alt: step.alt,
+              frameClass: "img-frame process-step__diagram",
+              autoAspect: true
+            })
+          : "") +
         "</article>" +
         "</li>"
       );

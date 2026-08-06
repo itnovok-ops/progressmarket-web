@@ -4,6 +4,7 @@
 
 import { initHeaderController } from "./headerController.js";
 import { initHeroVideoController } from "./videoController.js";
+import { initConversionCta } from "./conversionCta.js";
 import { logUlsEvent } from "../uls/observability.js";
 
 function runWhenIdle(fn, timeout) {
@@ -30,6 +31,7 @@ export function initLogicLayer(mount, pageContent) {
   });
 
   initHeaderController();
+  initConversionCta();
 
   runWhenIdle(function () {
     import("../components/leads.js")

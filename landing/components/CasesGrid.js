@@ -19,19 +19,30 @@ function renderMetrics(metrics, large) {
 
 function renderCaseCard(item) {
   if (item.type === "featured") {
+    const hasMedia = Boolean(item.image);
+    const cardClass = hasMedia
+      ? "case-card case-card--featured card reveal"
+      : "case-card case-card--featured case-card--no-media card reveal";
+    const bodyClass = hasMedia ? "case-card__body" : "case-card__body case-card__body--solo";
     return (
-      '<article class="case-card case-card--featured card reveal">' +
-      renderImage({
-        src: item.image,
-        alt: item.alt,
-        frameClass: "img-frame case-card__media",
-        autoAspect: true
-      }) +
-      '<div class="case-card__body">' +
+      '<article class="' +
+      cardClass +
+      '">' +
+      (hasMedia
+        ? renderImage({
+            src: item.image,
+            alt: item.alt,
+            frameClass: "img-frame case-card__media",
+            autoAspect: true
+          })
+        : "") +
+      '<div class="' +
+      bodyClass +
+      '">' +
       '<h3 class="u-h3">' +
       escapeHtml(item.title) +
       "</h3>" +
-      renderMetrics(item.metrics, false) +
+      renderMetrics(item.metrics, !hasMedia) +
       "</div>" +
       "</article>"
     );

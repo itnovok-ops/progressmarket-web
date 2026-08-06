@@ -184,6 +184,16 @@ export function bootSimpleLanding(config) {
   window.__BOOT_STARTED__ = true;
   window.__LIFEOS_BOOT_OWNER__ = config.bootOwner || "uls/simpleBoot.js";
 
+  import("./components/referral.js")
+    .then(function (mod) {
+      if (mod && typeof mod.captureAttribution === "function") {
+        mod.captureAttribution();
+      }
+    })
+    .catch(function (error) {
+      console.warn("[ULS] referral capture skipped:", error);
+    });
+
   const modulePaths = {
     content: config.content,
     renderPage: config.renderPage
