@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^event/?$ event.php [L,QSA]
+RewriteRule ^batch/?$ batch.php [L,QSA]
+RewriteRule ^session-summary/?$ session-summary.php [L,QSA]

@@ -1,0 +1,10 @@
+{
+  "competitors": [
+    {
+      "id": "market-benchmark-wb",
+      "name": "WB FBS Market Benchmark",
+      "url": "",
+      "html": "<html><body><header class='hero'><h1>Scale Wildberries revenue with automated FBS operations</h1></header><section class='video'><video autoplay></video></section><section class='problem'><h2>Manual fulfillment kills margin</h2></section><section class='insight solution'><h2>Automate picking, packing, and SLA tracking</h2></section><section class='cta'><button class='btn btn-primary'>Get free calculation</button></section><section class='testimonials trust'><blockquote>Trusted by 500+ sellers</blockquote></section><footer class='footer'></footer></body></html>"
+    }
+  ]
+}

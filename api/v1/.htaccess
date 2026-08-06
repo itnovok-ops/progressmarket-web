@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^leads/?$ leads.php [L,QSA]
