@@ -1,5 +1,5 @@
 import { escapeHtml } from "./utils.js";
-import { assertBootPass } from "../build/productionLock.js";
+import { assertBootPass } from "../runtime/productionLock.js";
 
 function upsertMeta(attr, key, value) {
   let el = document.querySelector('meta[' + attr + '="' + key + '"]');

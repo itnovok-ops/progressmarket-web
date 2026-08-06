@@ -38,12 +38,14 @@ function initStickyCta() {
     if (!isMobile()) {
       bar.classList.remove("is-visible");
       bar.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("has-sticky-cta-visible");
       return;
     }
     const pastHero = window.scrollY > window.innerHeight * 0.6;
     const show = pastHero && !ctaInView;
     bar.classList.toggle("is-visible", show);
     bar.setAttribute("aria-hidden", show ? "false" : "true");
+    document.body.classList.toggle("has-sticky-cta-visible", show);
   }
 
   window.addEventListener("scroll", sync, { passive: true });

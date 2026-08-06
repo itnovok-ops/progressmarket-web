@@ -35,6 +35,17 @@ final class LeadRepositoryFactory
 
     public static function storageDir(): string
     {
+        $configured = trim((string) Config::get('storage_path', ''));
+        if ($configured !== '') {
+            // Absolute path only; reject traversal segments.
+            if (!str_starts_with($configured, '/') || str_contains($configured, '..')) {
+                throw new \RuntimeException(
+                    'config storage_path must be an absolute filesystem path without ".."'
+                );
+            }
+            return rtrim($configured, '/');
+        }
+
         return dirname(__DIR__, 2) . '/storage/leads';
     }
 

@@ -1,4 +1,4 @@
-import { assertBootPass } from "../build/productionLock.js";
+import { assertBootPass } from "../runtime/productionLock.js";
 import { logUlsEvent, bumpUlsMetric } from "../uls/observability.js";
 
 const YM_COUNTER_ID = 109588612;

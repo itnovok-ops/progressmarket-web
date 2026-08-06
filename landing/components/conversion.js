@@ -1,4 +1,4 @@
-import { assertBootPass } from "../build/productionLock.js";
+import { assertBootPass } from "../runtime/productionLock.js";
 import { enqueueIntent } from "../../lifeos/core/intentLayer.js";
 import { runPipeline } from "../../lifeos/core/pipeline.js";
 

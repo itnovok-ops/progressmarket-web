@@ -1,6 +1,6 @@
 import { LEADS_ENDPOINT } from "../assets/data/content.js";
 import { trackFormSubmitSuccess } from "./tracking.js";
-import { assertBootPass } from "../build/productionLock.js";
+import { assertBootPass } from "../runtime/productionLock.js";
 import { logUlsEvent, bumpUlsMetric, logUlsError } from "../uls/observability.js";
 import { setFormState } from "../uls/state.js";
 import { getReferralCode, getUtmParams } from "./referral.js";
