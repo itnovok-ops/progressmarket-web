@@ -75,11 +75,9 @@ export const IMAGE_META = {
   "cases/dashboard.png": { width: 960, height: 540 }
 };
 
-// V1.1: points at the new self-contained canonical endpoint (api/v1/lead-intake.php).
-// NOT /api/v1/leads — that path depends on the top-level lifeos/ ops-core stack, which
-// is out of scope for this agent (see docs/LEAD_REFERRAL_V1.md for why). Roman must
-// explicitly confirm this before the branch is deployed — see implementation report §26.
-export const LEADS_ENDPOINT = "/api/v1/lead-intake.php";
+// Hotfix: PHP 5.6-compatible mail endpoint for current Beget runtime.
+// Do not dual-submit to lead-intake.php on this launch.
+export const LEADS_ENDPOINT = "/api/v1/send-lead.php";
 
 export const PAGE_CONTENT = {
   seo: {
